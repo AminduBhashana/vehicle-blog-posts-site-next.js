@@ -71,3 +71,9 @@ a{
     }
 }
 
+@media (max-width: 475px){
+    .container{
+        width: 380px;
+    }
+}
+

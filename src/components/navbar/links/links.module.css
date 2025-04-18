@@ -31,7 +31,7 @@
         right: 0;
         width: 50%;
         height: calc(100vh - 100px);
-        background-color: black;
+        background-color: var(--bg);
         display: flex;
         align-items: center;
         justify-content: center;

@@ -25,7 +25,16 @@ const SinglePostpage = async ({params}) => {
     const post = await getPost(slug);
     return(
         <div className={styles.container}>
-            <div className={styles.imgContainer}>
+            {post.img ? 
+                <div className={styles.imgContainer}>
+                <Image 
+                    src={post.img}
+                    alt='blog post image'
+                    fill
+                    className={styles.img}
+                />
+            </div> :
+                <div className={styles.imgContainer}>
                 <Image 
                     src="/blog-post1.jpg"
                     alt='blog post image'
@@ -33,6 +42,7 @@ const SinglePostpage = async ({params}) => {
                     className={styles.img}
                 />
             </div>
+            }      
             <div className={styles.textContainer}>
                 <h1 className={styles.title}>{post?.title}</h1>
                 <div className={styles.detail}>
@@ -49,7 +59,7 @@ const SinglePostpage = async ({params}) => {
                     )}                                
                     <div className={styles.detailText}>
                         <span className={styles.detailTitle}>Published</span>
-                        <span className={styles.detailValue}>01.04.2025</span>
+                        <span className={styles.detailValue}>{post.createdAt.toString().slice(4,16)}</span>
                     </div>
                 </div>
                 <div className={styles.content}>{post.body}</div>

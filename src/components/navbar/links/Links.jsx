@@ -26,7 +26,7 @@ const links = [
     }
 ];
 
-const Links = () => {
+const Links = ({session}) => {
     const [ open, setOpen ] = useState(false);
 
     
@@ -35,8 +35,6 @@ const Links = () => {
     }
 
     //Temporary
-    const session = true;
-    const isAdmin = true;
 
     return(
         <div className={styles.container}>
@@ -44,9 +42,9 @@ const Links = () => {
             {links.map((link => (
                 <NavLink item={link} key={link.title}/>
             )))}{
-              session ? (
+              session?.user ? (
                 <>
-                    {isAdmin && <NavLink item={{title: "Admin", path: "/admin"}}/>}
+                    {session.user?.isAdmin && <NavLink item={{title: "Admin", path: "/admin"}}/>}
                     <button onClick={handleLogout}  className={styles.logout}>Logout</button>
                 </>
               ) : (

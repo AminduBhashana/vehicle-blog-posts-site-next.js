@@ -4,6 +4,8 @@ import Image from 'next/image';
 import styles from './links.module.css'
 import NavLink from './navLink/navLink';
 import { useState } from 'react';
+import { signOut } from 'next-auth/react';
+
 
 const links = [
     {
@@ -27,9 +29,14 @@ const links = [
 const Links = () => {
     const [ open, setOpen ] = useState(false);
 
+    
+    const handleLogout = () => {
+        signOut();     
+    }
+
     //Temporary
     const session = true;
-    const isAdmin = false;
+    const isAdmin = true;
 
     return(
         <div className={styles.container}>
@@ -40,7 +47,7 @@ const Links = () => {
               session ? (
                 <>
                     {isAdmin && <NavLink item={{title: "Admin", path: "/admin"}}/>}
-                    <button className={styles.logout}>Logout</button>
+                    <button onClick={handleLogout}  className={styles.logout}>Logout</button>
                 </>
               ) : (
                 <NavLink item={{title:"Login", path: "/login"}} />

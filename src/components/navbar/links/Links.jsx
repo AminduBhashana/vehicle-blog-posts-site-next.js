@@ -34,7 +34,6 @@ const Links = ({session}) => {
         signOut();     
     }
 
-    //Temporary
 
     return(
         <div className={styles.container}>

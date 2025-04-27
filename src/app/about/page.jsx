@@ -12,7 +12,7 @@ const AboutPage = () => {
         <div className={styles.textContainer}>
           <h2 className={styles.subTitle}>About NewVehicles</h2>
           <h1 className={styles.title}>
-            Welcome to the Ultimate Destination for New Car Arrivals in Sri
+            Ultimate Destination for New Car Arrivals in Sri
             Lanka!
           </h1>
           <p className={styles.description}>

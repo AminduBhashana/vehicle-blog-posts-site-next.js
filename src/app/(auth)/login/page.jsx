@@ -1,7 +1,6 @@
 'use client'; 
 
 import { signIn } from "next-auth/react";
-import {handleGitLogin} from "../../../lib/action"
 
 const LoginPage =  () => {
     const handleGitLogin = () => {

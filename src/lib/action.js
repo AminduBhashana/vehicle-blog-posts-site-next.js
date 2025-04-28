@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
 import bcrypt from 'bcryptjs';
-import { signIn } from "./auth";
+
 
 export const addPost = async (formData) => {
     const { title, desc, slug, userId} = Object.fromEntries(formData);
@@ -37,11 +37,11 @@ export const deletePost = async (formData) => {
     }
 }
 
-export const register = async (formData) => {
+export const register = async (prevState ,formData) => {
     const { username, email, password, repeatPassword } = Object.fromEntries(formData);
     
     if(password !== repeatPassword){
-        return "passwords do not match";
+        return { error: "passwords do not match" };
     }
 
     try{
@@ -50,7 +50,7 @@ export const register = async (formData) => {
         const user = await User.findOne({username});
 
         if(user){
-            return "Username already exists";
+            return {error:"Username already exists"};
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -63,6 +63,7 @@ export const register = async (formData) => {
         })
     await newUser.save();
         console.log("Save to DB");
+        return {success: true};
     }catch(error){
         console.log(error);
         return {error: "Something went wrong"};

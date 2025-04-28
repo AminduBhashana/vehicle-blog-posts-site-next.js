@@ -1,11 +1,9 @@
 'use client'; 
-
-import { signIn } from "next-auth/react";
+import { login, handleGitLogin } from '../../../lib/authAction';
 
 const LoginPage =  () => {
-    const handleGitLogin = () => {
-        signIn('github',{ callbackUrl: '/' , redirect: true});     
-    }
+  
+  
   return (
     <div>
       <button
@@ -13,6 +11,11 @@ const LoginPage =  () => {
       >
         Continue with GitHub
       </button>
+      <form action={login} >
+        <input type="text" placeholder="username" name="username" />
+        <input type="password" placeholder="password" name="password" />
+        <button type="submit">Login with Credentials</button>
+    </form>
     </div>
   );
 };

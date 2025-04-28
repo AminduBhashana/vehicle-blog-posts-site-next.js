@@ -1,9 +1,9 @@
-
 import NextAuth from "next-auth";
 import { connectToDb } from "./utils";
 import { User } from "./models";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs';
+import { authConfig } from './auth.config';
 
 const login = async (credentials) => {
   try {
@@ -32,6 +32,7 @@ export const {
   signIn,
   signOut
 } = NextAuth({
+  ...authConfig,
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
@@ -47,4 +48,7 @@ export const {
   ],
   secret: process.env.AUTH_SECRET,
   basePath: "/api/auth",
+  callbacks: {
+    ...authConfig.callbacks
+  }
 });

@@ -36,7 +36,7 @@ It’s a full-stack blog platform where users can **view**, **create**, and **au
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/yourusername/vehicle-blog-app.git
+git clone https://github.com/AminduBhashana/vehicle-blog-app.git
 cd vehicle-blog-app
 ```
 
